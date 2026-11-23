@@ -30,7 +30,7 @@ export function makeLessonQuestions(plans, planIndex, number) {
   const codePool=peers.flatMap(x=>(x.goal.match(/\b(?:10|11)\s*\.\s*\d\s*\.\s*\d\s*\.\s*\d\b/g)||[]).map(z=>z.replace(/\s/g,'')));
   const methodOptions=['тарихи деректерді талдау','салыстыру және себеп-салдарды анықтау','картамен жұмыс істеу','тарихи құбылысты сипаттау','уақыт пен өзгерістерді зерттеу'];
   const matched=methodOptions.find(x=>goal.toLowerCase().includes(x.split(' ')[0])) || methodOptions[(lesson.n+planIndex)%methodOptions.length];
-  const focus=title.replace(/\s*БЖБ\s*№?\s*\d+/gi,'').replace(/\s*ТЖБ\s*№?\s*\d+/gi,'').trim();
+  const focus=title.replace(/\s*БЖБ\s*№?\s*\d+/gi,'').replace(/\s*ТЖБ\s*№?\s*\d+/gi,'').trim() || title;
   const questions=[
     ['КТЖ бойынша осы сабақтың нақты тақырыбы қайсы?',title,titles],
     ['Осы сабақтың оқу мақсатына сәйкес тұжырымды таңдаңыз.',first,goals],
