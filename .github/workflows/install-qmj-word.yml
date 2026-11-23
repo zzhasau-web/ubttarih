@@ -1,0 +1,52 @@
+name: Install original QMJ Word documents
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'qmj/word/UBT_TARIH_QMJ_WORD_upload.zip'
+      - 'UBT_TARIH_QMJ_WORD_upload.zip'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  install-word-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Extract original Word files exactly
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          root=Path(".")
+          source=next((p for p in [root/"qmj/word/UBT_TARIH_QMJ_WORD_upload.zip", root/"UBT_TARIH_QMJ_WORD_upload.zip"] if p.is_file()), None)
+          if source is None:
+              print("ZIP not found. Nothing to do.")
+              raise SystemExit(0)
+          names=[
+              "qmj/word/kazakhstan-11-q1.doc",
+              "qmj/word/kazakhstan-11-q2.docx",
+              "qmj/word/world-11-q1.doc",
+              "qmj/word/world-11-q2.docx",
+          ]
+          with ZipFile(source) as z:
+              for name in names:
+                  data=z.read(name)
+                  target=root/name
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  target.write_bytes(data)
+                  print(f"Restored {name} ({len(data)} bytes)")
+          source.unlink()
+          PY
+      - name: Publish original Word files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A qmj/word
+          git add -u UBT_TARIH_QMJ_WORD_upload.zip || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish four original QMJ Word documents without modifications"
+            git push
+          fi
