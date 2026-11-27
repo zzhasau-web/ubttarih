@@ -48,3 +48,12 @@
 .ai-tool-open:hover{background:#e5dfff}
 @media(max-width:1000px){.ai-tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.map-searchrow{flex-direction:column}.map-searchrow .btn{width:100%}.map-iframe-wrap{height:440px}.ai-tools-grid{grid-template-columns:1fr}.ai-tool-card{padding:17px}}
+
+
+/* Homepage artwork (other pages unchanged) */
+.historical-hero{position:relative;display:block;width:100%;max-width:1191px;margin:0 auto 24px;border-radius:18px;overflow:hidden;box-shadow:0 16px 35px rgba(90,57,29,.12);line-height:0}
+.historical-hero img{display:block;width:100%;height:auto;aspect-ratio:1191/896}
+.historical-start{position:absolute;left:28.3%;top:54.1%;width:44.5%;height:9.1%;background:transparent;border:0;border-radius:100px;cursor:pointer;z-index:1;touch-action:manipulation}
+.historical-start:hover{background:rgba(255,240,150,.12)}
+.historical-start:focus-visible{outline:3px solid #593fcf;outline-offset:4px}
+@media(max-width:550px){.historical-hero{border-radius:11px}.historical-start{left:27.5%;width:45.5%;top:53.3%;height:12%;min-height:34px}}
