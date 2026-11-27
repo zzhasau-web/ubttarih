@@ -5,8 +5,8 @@ const yearAgo = new Date();
 yearAgo.setFullYear(yearAgo.getFullYear() - 1);
 let DB={world:[],contexts:[],dates:[],people:[]},view="home",quiz=null,pos=0,answers={};let history=[];try{history=JSON.parse(localStorage.getItem("ubttarih_results")||"[]")}catch{}
 history = history.filter(row => !row.savedAt || new Date(row.savedAt) > yearAgo);
-const sections={home:"Басты бет",subjects:"Оқу бағыттары",tests:"ҰБТ тесттері",contexts:"Қазақстан тарихы — контекст",people:"Тарихи тұлғалар",dates:"100 дата",materials:"Материалдар",qmj:"ҚМЖ",lessons:"Сабақтар",videos:"Видео сабақ",progress:"Менің нәтижелерім",teacher:"Мұғалім панелі"};
-const icons={home:"⌂",subjects:"▦",tests:"☷",contexts:"▤",people:"♛",dates:"◷",materials:"▣",qmj:"▤",lessons:"📚",videos:"▶",progress:"◴",teacher:"▣"};
+const sections={home:"Басты бет",subjects:"Оқу бағыттары",tests:"ҰБТ тесттері",contexts:"Қазақстан тарихы — контекст",people:"Тарихи тұлғалар",dates:"100 дата",materials:"Материалдар",qmj:"ҚМЖ",lessons:"Сабақтар",videos:"Видео сабақ",map:"Карта",aitools:"Жасанды интеллект құралдары",progress:"Менің нәтижелерім",teacher:"Мұғалім панелі"};
+const icons={home:"⌂",subjects:"▦",tests:"☷",contexts:"▤",people:"♛",dates:"◷",materials:"▣",qmj:"▤",lessons:"📚",videos:"▶",map:"🗺️",aitools:"🤖",progress:"◴",teacher:"▣"};
 const $=s=>document.querySelector(s),esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 document.querySelector("#nav").innerHTML=Object.entries(sections).map(([k,v])=>'<button data-go="'+k+'">'+icons[k]+' &nbsp; '+v+'</button>').join("");
 document.querySelector("#menu").onclick=()=>document.querySelector("#sidebar").classList.toggle("open");
@@ -198,6 +198,8 @@ return '<article class="video-lesson-card"><div class="video-lesson-header"><spa
 }).join("")+'</div><div class="notice">Instagram материалдары аккаунттың жариялылығына және Instagram шектеулеріне байланысты сайт ішінде көрсетілмеуі мүмкін. Ондай жағдайда «Instagram-да ашу» сілтемесін басыңыз.</div>';
 return;
 }
+if(view==="map"){renderHistoryMap(el);return}
+if(view==="aitools"){renderHistoryAiTools(el);return}
 if(view==="materials"){el.innerHTML='<h1>📁 Материалдар</h1><div class="cards"><button class="card" data-go="tests"><h3>Дүниежүзі тарихы</h3><p>'+DB.world.length+' тест нұсқасы</p></button><button class="card" data-go="contexts"><h3>Қазақстан тарихы</h3><p>21 контекст</p></button><button class="card" data-go="dates"><h3>100 дата</h3><p>Маңызды хронология</p></button><button class="card" data-go="people"><h3>Тарихи тұлғалар</h3><p>Құжат негізіндегі тапсырмалар</p></button></div><div class="notice">Қазақстан тарихынан 50 тест нұсқасының файлы жүктелген материалдардың арасында жоқ. Қосымша оқу ресурсы: <a href="https://ubt140.kz/kk/materials/" target="_blank" rel="noopener noreferrer">ҰБТ 140 материалдары</a>.</div>';return}
 if(view==="progress"){el.innerHTML='<h1>📊 Менің нәтижелерім</h1><p class="lead">Осы браузерден тапсырған тест нәтижелеріңіз.</p><button id="switch-student" class="btn">Оқушыны ауыстыру</button><div class="results-list">'+(myHistory().length?myHistory().reverse().map(x=>'<div class="result-row"><strong>'+esc(x.title)+'</strong><span>'+x.correct+' / '+x.total+' · '+esc(x.date)+'</span></div>').join(""):'<div class="result-row">Әзірге тест нәтижелері жоқ</div>')+'</div>';return}
 }
