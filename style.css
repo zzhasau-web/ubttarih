@@ -57,3 +57,19 @@
 .historical-start:hover{background:rgba(255,240,150,.12)}
 .historical-start:focus-visible{outline:3px solid #593fcf;outline-offset:4px}
 @media(max-width:550px){.historical-hero{border-radius:11px}.historical-start{left:27.5%;width:45.5%;top:53.3%;height:12%;min-height:34px}}
+
+
+/* Homepage-only parchment & gold design — all other sections keep their original styles */
+.home-history-theme .homepage-result{display:flex;align-items:center;gap:18px;background:linear-gradient(110deg,#4c2b1b 0%,#875124 47%,#d29c46 100%);color:#fff1cf;border:2px solid #d9af65;border-radius:19px;padding:19px 25px;margin:23px 0 30px;box-shadow:0 12px 28px rgba(96,51,23,.17)}
+.home-history-theme .homepage-result-icon{display:grid;place-items:center;flex:0 0 54px;width:54px;height:54px;border:1px solid #f5d48e;border-radius:50%;font-size:30px;color:#ffe5a2;background:#ffffff1c}
+.home-history-theme .homepage-result>div{display:flex;flex-direction:column;flex:1;gap:2px}
+.home-history-theme .homepage-result strong{font-size:20px;letter-spacing:.2px}
+.home-history-theme .homepage-result>div span{font-size:12px;color:#ffe6b6}
+.home-history-theme .homepage-result>b{font-size:40px;color:#ffe6a5;line-height:1;letter-spacing:-1px;text-shadow:0 2px 4px #522b18}
+.home-history-theme .section-title{color:#5e321a;font-weight:900}
+.home-history-theme .cards .card{background:linear-gradient(170deg,#fffcf5,#f9ecd2);border:1px solid #dbb77e;box-shadow:0 8px 23px rgba(93,61,25,.10);color:#4b291b}
+.home-history-theme .cards .card .cover{background:radial-gradient(circle at 49% 40%,#ddac51 0%,#a5672d 48%,#502d21 100%)!important;border:1px solid #e8ba6b;box-shadow:inset 0 0 32px #3f20144f;color:#ffedc1!important}
+.home-history-theme .cards .card h3{color:#623718;font-weight:850}
+.home-history-theme .cards .card p{color:#8a6547}
+.home-history-theme .cards .card:hover{border-color:#bb863c;box-shadow:0 13px 27px rgba(101,60,24,.17)}
+@media(max-width:720px){.home-history-theme .homepage-result{gap:11px;padding:15px 14px;border-radius:15px}.home-history-theme .homepage-result-icon{flex-basis:43px;width:43px;height:43px;font-size:23px}.home-history-theme .homepage-result strong{font-size:17px}.home-history-theme .homepage-result>div span{font-size:10px}.home-history-theme .homepage-result>b{font-size:30px}}
